@@ -1,4 +1,4 @@
-# Sharpie Bot
+# Herbert The Safety Chicken - The Discord Bot
 
 ## Cloning The Repository
 
