@@ -8,7 +8,7 @@ class Ping(interactions.Extension):
 
     @interactions.extension_command(name="ping", description="Shows bot latency")
     async def ping(self, ctx: interactions.CommandContext) -> None:
-        await ctx.send("Hello! I'm Sharpie!")
+        await ctx.send("Hello! I'm Herbert!")
 
 def setup(bot: interactions.Client) -> None:
     Ping(bot)
