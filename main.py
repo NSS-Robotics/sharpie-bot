@@ -1,20 +1,23 @@
 import interactions
-from interactions import Client, Intents
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
-bot = Client(token=os.getenv('TOKEN'), presence=interactions.ClientPresence(activities=[interactions.PresenceActivity(name="Safety Third", type=interactions.PresenceActivityType.LISTENING)]), intents=Intents.GUILD_MESSAGE_CONTENT)
+bot = interactions.Client(token=os.getenv(
+    'TOKEN'), default_scope=918591198799749240)
+
 
 @bot.event
-async def on_ready():
+async def on_start():
     print('Ready!')
     print('------')
 
+
 for filename in os.listdir('./commands'):
     if filename.endswith('.py'):
+        bot.load_extension(f'commands.{filename[:-3]}')
         print(f'Loaded: {filename[:-3]}')
-        bot.load(f'commands.{filename[:-3]}')
+
 
 bot.start()

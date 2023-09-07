@@ -1,33 +1,30 @@
 import interactions
 
-GUILD_IDS = [918591198799749240]
 
 class Annoy(interactions.Extension):
-    def __init__(self, bot: interactions.Client) -> None:
-        self.bot = bot
+    def __init__(self, bot: interactions.Client):
+        self.bot: interactions.Client = bot
 
-    @interactions.extension_command(
+    @interactions.slash_command(
         name="annoy",
         description="Annoy someone",
-        options=[
-            interactions.Option(
-                name="user",
-                description="The user to annoy",
-                type=interactions.OptionType.USER,
-                required=True
-            ),
-            interactions.Option(
-                name="amount",
-                description="The amount of times to annoy the user",
-                type=interactions.OptionType.INTEGER,
-                required=True
-            ),
-        ]
+    )
+    @interactions.slash_option(
+        name="user",
+        description="The user to annoy",
+        opt_type=interactions.OptionType.USER,
+        required=True
+    )
+    @interactions.slash_option(
+        name="amount",
+        description="The amount of times to annoy the user",
+        opt_type=interactions.OptionType.INTEGER,
+        required=True
     )
     async def annoy(
         self,
-        ctx: interactions.CommandContext,
-        user: interactions.User,
+        ctx: interactions.SlashContext,
+        user,
         amount: int,
     ) -> None:
         if amount > 10:
@@ -37,5 +34,6 @@ class Annoy(interactions.Extension):
             for i in range(amount):
                 await ctx.send(user.mention)
 
-def setup(bot: interactions.Client) -> None:
+
+def setup(bot):
     Annoy(bot)

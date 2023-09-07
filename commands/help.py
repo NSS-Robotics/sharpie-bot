@@ -7,8 +7,8 @@ class Help(interactions.Extension):
     def __init__(self, bot: interactions.Client) -> None:
         self.bot = bot
 
-    @interactions.extension_command(name="help", description="Lists available commands")
-    async def help(self, ctx: interactions.CommandContext) -> None:
+    @interactions.slash_command(name="help", description="Lists available commands")
+    async def help(self, ctx) -> None:
         embed = interactions.Embed(title="Help")
         embed.add_field(
             name="Annoy Someone",
@@ -31,6 +31,7 @@ class Help(interactions.Extension):
             inline=False,
         )
         await ctx.send(embeds=embed)
+
 
 def setup(bot: interactions.Client) -> None:
     Help(bot)
