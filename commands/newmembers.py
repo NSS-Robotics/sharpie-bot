@@ -1,5 +1,5 @@
 import interactions
-from interactions import Modal, ShortText, ModalContext
+from interactions import Modal, ShortText, ModalContext, ActionRow, spread_to_rows, component_callback
 
 GUILD_IDS = [918591198799749240]
 
@@ -10,7 +10,7 @@ class Roles(interactions.Extension):
 
     @interactions.slash_command(name="roles", description="Sends role selector")
     async def roles(self, ctx) -> None:
-        team_row = interactions.spread_to_rows(
+        team_row: list[ActionRow] = spread_to_rows(
             interactions.Button(
                 style=interactions.ButtonStyle.PRIMARY,
                 label="Manufacturing Team",
@@ -108,7 +108,7 @@ class Roles(interactions.Extension):
         await ctx.channel.send(embeds=embed3, components=pronoun_row)
         await ctx.channel.send(embeds=embed4, components=final_button)
 
-    @interactions.component_callback("manufacturing")
+    @component_callback("manufacturing")
     async def manufacturing_button(self, ctx) -> None:
         await self.bot.fetch_guild(GUILD_IDS[0])
         role = 918634757028458507
@@ -123,11 +123,10 @@ class Roles(interactions.Extension):
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
-    @interactions.component_callback("electrical")
+    @component_callback("electrical")
     async def electrical_button(self, ctx) -> None:
         await self.bot.fetch_guild(GUILD_IDS[0])
         role = 1021608042023878716
-
         if role in ctx.author.roles:
             embed = interactions.Embed(
                 description=f"❌ You've been removed from the <@&{role}>!", color=0xd82d42)
@@ -138,11 +137,10 @@ class Roles(interactions.Extension):
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
-    @interactions.component_callback("design")
+    @component_callback("design")
     async def design_button(self, ctx) -> None:
         await self.bot.fetch_guild(GUILD_IDS[0])
         role = 918634709507014666
-
         if role in ctx.author.roles:
             embed = interactions.Embed(
                 description=f"❌ You've been removed from the <@&{role}>!", color=0xd82d42)
@@ -153,11 +151,10 @@ class Roles(interactions.Extension):
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
-    @interactions.component_callback("programming")
+    @component_callback("programming")
     async def programming_button(self, ctx) -> None:
         await self.bot.fetch_guild(GUILD_IDS[0])
         role = 918634815140556842
-
         if role in ctx.author.roles:
             embed = interactions.Embed(
                 description=f"❌ You've been removed from the <@&{role}>!", color=0xd82d42)
@@ -168,11 +165,10 @@ class Roles(interactions.Extension):
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
-    @interactions.component_callback("business")
+    @component_callback("business")
     async def business_button(self, ctx) -> None:
         await self.bot.fetch_guild(GUILD_IDS[0])
         role = 918634627055353906
-
         if role in ctx.author.roles:
             embed = interactions.Embed(
                 description=f"❌ You've been removed from the <@&{role}>!", color=0xd82d42)
@@ -183,11 +179,10 @@ class Roles(interactions.Extension):
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
-    @interactions.component_callback("media")
+    @component_callback("media")
     async def media_button(self, ctx) -> None:
         await self.bot.fetch_guild(GUILD_IDS[0])
         role = 982774976287506442
-
         if role in ctx.author.roles:
             embed = interactions.Embed(
                 description=f"❌ You've been removed from the <@&{role}>!", color=0xd82d42)
@@ -198,11 +193,10 @@ class Roles(interactions.Extension):
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
-    @interactions.component_callback("he_him")
+    @component_callback("he_him")
     async def he_him_button(self, ctx) -> None:
         await self.bot.fetch_guild(GUILD_IDS[0])
         role = 1021591068774502511
-
         if role in ctx.author.roles:
             embed = interactions.Embed(
                 description=f"❌ Removed <@&{role}> pronouns!", color=0xd82d42)
@@ -213,11 +207,10 @@ class Roles(interactions.Extension):
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
-    @interactions.component_callback("she_her")
+    @component_callback("she_her")
     async def she_her_button(self, ctx) -> None:
         await self.bot.fetch_guild(GUILD_IDS[0])
         role = 1021591222789357590
-
         if role in ctx.author.roles:
             embed = interactions.Embed(
                 description=f"❌ Removed <@&{role}> pronouns!", color=0xd82d42)
@@ -228,11 +221,10 @@ class Roles(interactions.Extension):
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
-    @interactions.component_callback("they_them")
+    @component_callback("they_them")
     async def they_them_button(self, ctx) -> None:
         await self.bot.fetch_guild(GUILD_IDS[0])
         role = 1021591254020149268
-
         if role in ctx.author.roles:
             embed = interactions.Embed(
                 description=f"❌ Removed <@&{role}> pronouns!", color=0xd82d42)
@@ -243,11 +235,10 @@ class Roles(interactions.Extension):
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
-    @interactions.component_callback("any")
+    @component_callback("any")
     async def any_button(self, ctx) -> None:
         await self.bot.fetch_guild(GUILD_IDS[0])
         role = 1021591277009109032
-
         if role in ctx.author.roles:
             embed = interactions.Embed(
                 description=f"❌ Removed <@&{role}> pronouns!", color=0xd82d42)
@@ -258,12 +249,12 @@ class Roles(interactions.Extension):
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
-    @interactions.component_callback("final_button")
+    @component_callback("final_button")
     async def final_button(self, ctx) -> None:
         newperson_modal = Modal(
             ShortText(
                 label="Short Input Text",
-                placeholder="<First name> (<Role>) Ex. Jacob (Manufacturing)",
+                placeholder="<First name> (<Role>) // Ex. Jacob (Manufacturing)",
                 custom_id="newperson_modal_info",
                 required=True,
             ),
