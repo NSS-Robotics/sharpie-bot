@@ -1,4 +1,5 @@
 import interactions
+from interactions import Modal, ShortText, ModalContext
 
 GUILD_IDS = [918591198799749240]
 
@@ -13,44 +14,44 @@ class Roles(interactions.Extension):
             interactions.Button(
                 style=interactions.ButtonStyle.PRIMARY,
                 label="Manufacturing Team",
-                emoji=interactions.Emoji(name="🛠️"),
+                emoji=interactions.PartialEmoji.from_str("🛠️"),
                 custom_id="manufacturing",
-                scope=GUILD_IDS
+
             ),
             interactions.Button(
                 style=interactions.ButtonStyle.PRIMARY,
                 label="Electrical Team",
-                emoji=interactions.Emoji(name="⚡"),
+                emoji=interactions.PartialEmoji.from_str("⚡"),
                 custom_id="electrical",
-                scope=GUILD_IDS
+
             ),
             interactions.Button(
                 style=interactions.ButtonStyle.PRIMARY,
                 label="Design Team",
-                emoji=interactions.Emoji(name="✏️"),
+                emoji=interactions.PartialEmoji.from_str("✏️"),
                 custom_id="design",
-                scope=GUILD_IDS
+
             ),
             interactions.Button(
                 style=interactions.ButtonStyle.PRIMARY,
                 label="Programming Team",
-                emoji=interactions.Emoji(name="🖥️"),
+                emoji=interactions.PartialEmoji.from_str("🖥️"),
                 custom_id="programming",
-                scope=GUILD_IDS
+
             ),
             interactions.Button(
                 style=interactions.ButtonStyle.PRIMARY,
                 label="Business Team",
-                emoji=interactions.Emoji(name="💰"),
+                emoji=interactions.PartialEmoji.from_str("💰"),
                 custom_id="business",
-                scope=GUILD_IDS
+
             ),
             interactions.Button(
                 style=interactions.ButtonStyle.PRIMARY,
                 label="Media Team",
-                emoji=interactions.Emoji(name="📸"),
+                emoji=interactions.PartialEmoji.from_str("📸"),
                 custom_id="media",
-                scope=GUILD_IDS
+
             ),
         )
 
@@ -59,26 +60,32 @@ class Roles(interactions.Extension):
                 style=interactions.ButtonStyle.SECONDARY,
                 label="He/Him",
                 custom_id="he_him",
-                scope=GUILD_IDS
+
             ),
             interactions.Button(
                 style=interactions.ButtonStyle.SECONDARY,
                 label="She/Her",
                 custom_id="she_her",
-                scope=GUILD_IDS
+
             ),
             interactions.Button(
                 style=interactions.ButtonStyle.SECONDARY,
                 label="They/Them",
                 custom_id="they_them",
-                scope=GUILD_IDS
+
             ),
             interactions.Button(
                 style=interactions.ButtonStyle.SECONDARY,
                 label="Any",
                 custom_id="any",
-                scope=GUILD_IDS
+
             ),
+        )
+
+        final_button = interactions.Button(
+            style=interactions.ButtonStyle.DANGER,
+            label="CLICK ME!",
+            custom_id="final_button",
         )
 
         embed1 = interactions.Embed(
@@ -92,11 +99,14 @@ class Roles(interactions.Extension):
             description=f"🙋 **Sub-Team Roles**", color=0x5ccbff)
         embed3 = interactions.Embed(
             description=f"🗣️ **Pronoun Roles**", color=0x5ccbff)
+        embed4 = interactions.Embed(
+            description=f"👆 **Click The Big Red Button To Finish**", color=0x5ccbff)
 
-        await ctx.get_channel()
+        # await ctx.get_channel()
         await ctx.channel.send(embeds=embed1)
         await ctx.channel.send(embeds=embed2, components=team_row)
         await ctx.channel.send(embeds=embed3, components=pronoun_row)
+        await ctx.channel.send(embeds=embed4, components=final_button)
 
     @interactions.component_callback("manufacturing")
     async def manufacturing_button(self, ctx) -> None:
@@ -247,6 +257,25 @@ class Roles(interactions.Extension):
                 description=f"✅ Added Any pronouns!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
+
+    @interactions.component_callback("final_button")
+    async def final_button(self, ctx) -> None:
+        newperson_modal = Modal(
+            ShortText(
+                label="Short Input Text",
+                placeholder="<First name> (<Role>) Ex. Jacob (Manufacturing)",
+                custom_id="newperson_modal_info",
+                required=True,
+            ),
+            title="New Member Info Grab",
+        )
+
+        await ctx.send_modal(modal=newperson_modal)
+
+        modal_ctx: ModalContext = await ctx.bot.wait_for_modal(newperson_modal)
+        await modal_ctx.author.edit_nickname(modal_ctx.responses["newperson_modal_info"])
+
+        await modal_ctx.send("Thanks! You're all good to go!", ephemeral=True)
 
 
 def setup(bot: interactions.Client) -> None:
