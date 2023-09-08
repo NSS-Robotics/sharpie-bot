@@ -26,8 +26,8 @@ class Help(interactions.Extension):
             inline=False,
         )
         embed.add_field(
-            name="Images Link",
-            value="`/images` \n Sends an embed with the link to the Google Drive folder with all the photos",
+            name="Media Link",
+            value="`/media` \n Sends an embed with the link to the Google Drive folder with all the photos",
             inline=False,
         )
         await ctx.send(embeds=embed)
