@@ -30,7 +30,7 @@ class Help(interactions.Extension):
             value="`/media` \n Sends an embed with the link to the Google Drive folder with all the photos",
             inline=False,
         )
-        await ctx.send(embeds=embed)
+        await ctx.send(embeds=embed, ephemeral=True)
 
 
 def setup(bot: interactions.Client) -> None:
