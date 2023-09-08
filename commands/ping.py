@@ -9,7 +9,7 @@ class Ping(interactions.Extension):
 
     @interactions.slash_command(name="ping", description="Shows bot latency")
     async def ping(self, ctx) -> None:
-        await ctx.send("Hello! I'm Herbert!")
+        await ctx.send("Hello! I'm Herbert!", ephemeral=True)
 
 
 def setup(bot: interactions.Client) -> None:
