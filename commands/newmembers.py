@@ -89,10 +89,10 @@ class Roles(interactions.Extension):
         )
 
         embed1 = interactions.Embed(
-            description="👋 Hi! Welcome to the NSS Robotics Discord server! "
-            "Please use the buttons below to grab various roles for both your positon/positions on the team "
-            "as well as your preferred pronouns. You can pick as many as you'd like for both!\n\nThe buttons are toggles "
-            "so clicking them once will give you the role and clicking them again will take the role away",
+            description="👋 Hi! Welcome to the NSS Robotics Discord server!\n\n"
+            "Please use the buttons below to grab the roles corresponding to your subteam as well as for your preferred pronouns. "
+            "You can pick as many as you'd like for both!\n\n"
+            "The buttons are toggles so clicking them once will give you the role and clicking them again while you already have role will take it away",
             color=0x5ccbff
         )
         embed2 = interactions.Embed(
@@ -115,11 +115,11 @@ class Roles(interactions.Extension):
 
         if role in ctx.author.roles:
             embed = interactions.Embed(
-                description=f"❌ You've been removed from the Manufacturing Team!", color=0xd82d42)
+                description=f"❌ You've been removed from the <@&{role}>!", color=0xd82d42)
             await ctx.author.remove_role(role)
         else:
             embed = interactions.Embed(
-                description=f"✅ You've been added to the Manufacturing Team!", color=0x76b154)
+                description=f"✅ You've been added to the <@&{role}>!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
@@ -130,11 +130,11 @@ class Roles(interactions.Extension):
 
         if role in ctx.author.roles:
             embed = interactions.Embed(
-                description=f"❌ You've been removed from the Electrical Team!", color=0xd82d42)
+                description=f"❌ You've been removed from the <@&{role}>!", color=0xd82d42)
             await ctx.author.remove_role(role)
         else:
             embed = interactions.Embed(
-                description=f"✅ You've been added to the Electrical Team!", color=0x76b154)
+                description=f"✅ You've been added to the <@&{role}>!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
@@ -145,11 +145,11 @@ class Roles(interactions.Extension):
 
         if role in ctx.author.roles:
             embed = interactions.Embed(
-                description=f"❌ You've been removed from the Design Team!", color=0xd82d42)
+                description=f"❌ You've been removed from the <@&{role}>!", color=0xd82d42)
             await ctx.author.remove_role(role)
         else:
             embed = interactions.Embed(
-                description=f"✅ You've been added to the Design Team!", color=0x76b154)
+                description=f"✅ You've been added to the <@&{role}>!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
@@ -160,11 +160,11 @@ class Roles(interactions.Extension):
 
         if role in ctx.author.roles:
             embed = interactions.Embed(
-                description=f"❌ You've been removed from the Programming Team!", color=0xd82d42)
+                description=f"❌ You've been removed from the <@&{role}>!", color=0xd82d42)
             await ctx.author.remove_role(role)
         else:
             embed = interactions.Embed(
-                description=f"✅ You've been added to the Programming Team!", color=0x76b154)
+                description=f"✅ You've been added to the <@&{role}>!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
@@ -175,11 +175,11 @@ class Roles(interactions.Extension):
 
         if role in ctx.author.roles:
             embed = interactions.Embed(
-                description=f"❌ You've been removed from the Business Team!", color=0xd82d42)
+                description=f"❌ You've been removed from the <@&{role}>!", color=0xd82d42)
             await ctx.author.remove_role(role)
         else:
             embed = interactions.Embed(
-                description=f"✅ You've been added to the Business Team!", color=0x76b154)
+                description=f"✅ You've been added to the <@&{role}>!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
@@ -190,11 +190,11 @@ class Roles(interactions.Extension):
 
         if role in ctx.author.roles:
             embed = interactions.Embed(
-                description=f"❌ You've been removed from the Media Team!", color=0xd82d42)
+                description=f"❌ You've been removed from the <@&{role}>!", color=0xd82d42)
             await ctx.author.remove_role(role)
         else:
             embed = interactions.Embed(
-                description=f"✅ You've been added to the Media Team!", color=0x76b154)
+                description=f"✅ You've been added to the <@&{role}>!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
@@ -205,11 +205,11 @@ class Roles(interactions.Extension):
 
         if role in ctx.author.roles:
             embed = interactions.Embed(
-                description=f"❌ Removed He/Him pronouns!", color=0xd82d42)
+                description=f"❌ Removed <@&{role}> pronouns!", color=0xd82d42)
             await ctx.author.remove_role(role)
         else:
             embed = interactions.Embed(
-                description=f"✅ Added He/Him pronouns!", color=0x76b154)
+                description=f"✅ Added <@&{role}> pronouns!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
@@ -220,11 +220,11 @@ class Roles(interactions.Extension):
 
         if role in ctx.author.roles:
             embed = interactions.Embed(
-                description=f"❌ Removed She/Her pronouns!", color=0xd82d42)
+                description=f"❌ Removed <@&{role}> pronouns!", color=0xd82d42)
             await ctx.author.remove_role(role)
         else:
             embed = interactions.Embed(
-                description=f"✅ Added She/Her pronouns!", color=0x76b154)
+                description=f"✅ Added <@&{role}> pronouns!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
@@ -235,11 +235,11 @@ class Roles(interactions.Extension):
 
         if role in ctx.author.roles:
             embed = interactions.Embed(
-                description=f"❌ Removed They/Them pronouns!", color=0xd82d42)
+                description=f"❌ Removed <@&{role}> pronouns!", color=0xd82d42)
             await ctx.author.remove_role(role)
         else:
             embed = interactions.Embed(
-                description=f"✅ Added They/Them pronouns!", color=0x76b154)
+                description=f"✅ Added <@&{role}> pronouns!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
@@ -250,11 +250,11 @@ class Roles(interactions.Extension):
 
         if role in ctx.author.roles:
             embed = interactions.Embed(
-                description=f"❌ Removed Any pronouns!", color=0xd82d42)
+                description=f"❌ Removed <@&{role}> pronouns!", color=0xd82d42)
             await ctx.author.remove_role(role)
         else:
             embed = interactions.Embed(
-                description=f"✅ Added Any pronouns!", color=0x76b154)
+                description=f"✅ Added <@&{role}> pronouns!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
 
