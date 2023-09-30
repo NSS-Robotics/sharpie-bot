@@ -10,7 +10,7 @@ from interactions import listen
 load_dotenv()
 
 bot = interactions.Client(token=os.getenv('TOKEN'), activity=interactions.Activity.create(
-    name="Why dogs > cats", type=interactions.ActivityType.LISTENING), intents=interactions.Intents.DEFAULT | interactions.Intents.GUILD_MEMBERS, default_scope=918591198799749240)
+    name="why dogs > cats", type=interactions.ActivityType.LISTENING), intents=interactions.Intents.DEFAULT | interactions.Intents.GUILD_MEMBERS, default_scope=918591198799749240)
 
 
 @listen(Startup)
