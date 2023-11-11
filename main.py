@@ -18,6 +18,7 @@ bot = interactions.Client(token=os.getenv('TOKEN'), activity=interactions.Activi
 async def on_startup():
     print('Ready!')
     print('------')
+    profanity.load_censor_words(whitelist_words=['lmao', 'lmfao', 'wtf'])
 
 
 @listen(GuildJoin)
