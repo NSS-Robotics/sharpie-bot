@@ -19,7 +19,7 @@ async def on_startup():
     print('Ready!')
     print('------')
     profanity.load_censor_words(
-        whitelist_words=['lmao', 'lmfao', 'wtf', 'omg', 'damn', 'drunk', 'hell', 'god', 'godamn', 'godamnit', 'goddam,', 'goddammit', 'goddamn', 'goddamned', 'vodka'])
+        whitelist_words=['lmao', 'lmfao', 'wtf', 'omg', 'damn', 'drunk', 'hell', 'god', 'godamn', 'godamnit', 'goddam,', 'goddammit', 'goddamn', 'goddamned', 'vodka', 'knob', 'slope'])
 
 
 @listen(GuildJoin)
