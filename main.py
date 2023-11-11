@@ -32,7 +32,7 @@ async def on_message(event: MessageCreate):
         return
     elif profanity.contains_profanity(messageContent):
         await event.message.reply("https://tenor.com/view/captain-america-marvel-avengers-gif-14328153")
-        await event.message.author.send(f"Hi {event.message.author.mention}! Just sending this about {event.message.jump_url}. We try and keep the robotics server server pretty clean, epecially since Mr. Wong doesn't like it when we swear so if you could do your best to keep it clean that would be great! Thanks!", surpressEmbeds=True)
+        await event.message.author.send(f"Hi {event.message.author.mention}! Just sending this about {event.message.jump_url}. We try and keep the robotics server server pretty clean, epecially since Mr. Wong doesn't like it when we swear so if you could do your best to keep it clean that would be great! Thanks!", suppress_embeds=True)
 
 for filename in os.listdir('./commands'):
     if filename.endswith('.py'):
