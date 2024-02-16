@@ -18,8 +18,8 @@ bot = interactions.Client(token=os.getenv('TOKEN'), activity=interactions.Activi
 async def on_startup():
     print('Ready!')
     print('------')
-    profanity.load_censor_words(
-        whitelist_words=['lube', 'tit', 'lmao', 'lmfao', 'wtf', 'omg', 'damn', 'drunk', 'hell', 'god', 'godamn', 'godamnit', 'goddam,', 'goddammit', 'goddamn', 'goddamned', 'vodka', 'knob', 'slope', 'stroke', 'stupid', 'doofus', 'frigga', 'cowgirl', 'muff', 'pawn', 'pot', 'dopey', 'rum', 'screw', 'fat', 'screwed', 'screwing', 'sob', 'gay', 'lesbian', 'queer'])
+    profanity.load_censor_words_from_file('nonowords.txt')
+    print()
 
 
 @listen(GuildJoin)
