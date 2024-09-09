@@ -266,6 +266,9 @@ class Roles(interactions.Extension):
         modal_ctx: ModalContext = await ctx.bot.wait_for_modal(newperson_modal)
         await modal_ctx.author.edit_nickname(modal_ctx.responses["newperson_modal_info"])
 
+        # Remove the unnamed member role so they can actually see everything
+        await ctx.author.remove_role(1282502650977452092)
+
         await modal_ctx.send("Thanks! You're all good to go!", ephemeral=True)
 
 
