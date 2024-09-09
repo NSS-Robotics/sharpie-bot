@@ -1,6 +1,6 @@
 import interactions
 from interactions import listen
-from interactions.api.events import Startup, GuildJoin, MessageCreate
+from interactions.api.events import Startup, GuildJoin, MessageCreate, MemberAdd
 from better_profanity import profanity
 import os
 from dotenv import load_dotenv
@@ -35,6 +35,12 @@ async def on_message(event: MessageCreate):
     elif profanity.contains_profanity(messageContent):
         await event.message.reply("https://tenor.com/view/captain-america-marvel-avengers-gif-14328153")
         await event.message.author.send(f"Hi {event.message.author.mention}! Just sending this about {event.message.jump_url}. We try and keep the robotics server server pretty clean, epecially since Mr. Wong doesn't like it when we swear so if you could do your best to keep it clean that would be great! Thanks!", suppress_embeds=True)
+
+
+@listen(MemberAdd)
+async def on_member_join(event: MemberAdd):
+    if (event.guild.id == 918591198799749240):
+        await event.member.add_role(1282502650977452092)
 
 for filename in os.listdir('./commands'):
     if filename.endswith('.py'):
