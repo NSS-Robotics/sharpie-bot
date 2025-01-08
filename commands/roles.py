@@ -88,6 +88,12 @@ class Roles(interactions.Extension):
             custom_id="final_button",
         )
 
+        harbord_button = interactions.Button(
+            style=interactions.ButtonStyle.BLUE,
+            label="Harbord CI",
+            custom_id="harbord_button",
+        )
+
         embed1 = interactions.Embed(
             description="👋 Hi! Welcome to the NSS Robotics Discord server!\n\n"
             "Please use the buttons below to grab the roles corresponding to your subteam as well as for your preferred pronouns. "
@@ -101,11 +107,14 @@ class Roles(interactions.Extension):
             description=f"🗣️ **Pronoun Roles**", color=0x5ccbff)
         embed4 = interactions.Embed(
             description=f"👆 **Click The Big Red Button To Finish**", color=0x5ccbff)
+        harbordCIEmbed = interactions.Embed(
+            description=f"🏫 **Click Me If You're From Harbord CI**", color=0x5ccbff)
 
         # await ctx.get_channel()
         await ctx.channel.send(embeds=embed1)
-        await ctx.channel.send(embeds=embed2, components=team_row)
         await ctx.channel.send(embeds=embed3, components=pronoun_row)
+        await ctx.channel.send(embeds=harbordCIEmbed, components=harbord_button)
+        await ctx.channel.send(embeds=embed2, components=team_row)
         await ctx.channel.send(embeds=embed4, components=final_button)
 
     @component_callback("manufacturing")
@@ -248,6 +257,36 @@ class Roles(interactions.Extension):
                 description=f"✅ Added <@&{role}> pronouns!", color=0x76b154)
             await ctx.author.add_role(role)
         await ctx.send(embeds=embed, ephemeral=True)
+
+    @component_callback("harbord_button")
+    async def any_button(self, ctx) -> None:
+        await self.bot.fetch_guild(GUILD_IDS[0])
+        role = 1324887509393739857
+        if role in ctx.author.roles:
+            embed = interactions.Embed(
+                description=f"❌ Removed <@&{role}>", color=0xd82d42)
+            await ctx.author.remove_role(role)
+        else:
+            newharbordperson_modal = Modal(
+                ShortText(
+                    label="Short Input Text",
+                    placeholder="<First name> (<Role>) // Ex. Jacob (Manufacturing)",
+                    custom_id="newharbordperson_modal_info",
+                    required=True,
+                ),
+                title="Harbord CI Info Grab",
+            )
+
+            await ctx.send_modal(modal=newharbordperson_modal)
+
+            modal_ctx: ModalContext = await ctx.bot.wait_for_modal(newharbordperson_modal)
+            await modal_ctx.author.edit_nickname(modal_ctx.responses["newharbordperson_modal_info"])
+
+            # Add the HCI role
+            await ctx.author.add_role(role)
+            # Remove the unnamed member role so they can actually see everything
+            await ctx.author.remove_role(1282502650977452092)
+            await modal_ctx.send("Thanks! You're all good to go!", ephemeral=True)
 
     @component_callback("final_button")
     async def final_button(self, ctx) -> None:
